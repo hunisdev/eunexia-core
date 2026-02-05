@@ -1,5 +1,6 @@
 class InboundRun < ApplicationRecord
   belongs_to :integration
+  has_many :inbound_attempts, dependent: :destroy
 
   STATUSES = %w[pending running completed failed].freeze
   MODES = %w[polling webhook].freeze

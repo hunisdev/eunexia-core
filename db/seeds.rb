@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Integration.find_or_create_by!(source_system: 'medusa') do |integration|
+  integration.name = 'Medusa (dev)'
+  integration.enabled = true
+  integration.settings = {
+    base_url: ENV.fetch('MEDUSA_BASE_URL', 'http://localhost:9000'),
+    api_key: ENV['MEDUSA_API_KEY']
+  }
+end
